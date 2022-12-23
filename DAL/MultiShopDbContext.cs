@@ -5,6 +5,11 @@ namespace MultiShop.DAL
 {
     public class MultiShopDbContext:DbContext
     {
+        public MultiShopDbContext(DbContextOptions<MultiShopDbContext> options):base(options)
+        {
+        }
+                
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-KA8SSD4;Database=MultiShopDB;Trusted_Connection=true;");

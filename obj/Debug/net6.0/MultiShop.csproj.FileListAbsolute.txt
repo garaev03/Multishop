@@ -16,9 +16,7 @@ C:\Users\samir\Desktop\ASPNET CORE\MultiShop\bin\Debug\net6.0\MultiShop.dll
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\bin\Debug\net6.0\MultiShop.pdb
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\scopedcss\bundle\MultiShop.styles.css
-C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\scopedcss\projectbundle\MultiShop.bundle.scp.css
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\MultiShop.dll
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\refint\MultiShop.dll
 C:\Users\samir\Desktop\ASPNET CORE\MultiShop\obj\Debug\net6.0\MultiShop.pdb

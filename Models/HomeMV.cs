@@ -2,7 +2,7 @@
 {
     public class HomeMV
     {
-        public List<Product>? products;
         public List<Category>? categories;
+        public List<Product>? products;
     }
 }

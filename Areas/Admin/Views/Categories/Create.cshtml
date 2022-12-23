@@ -1,0 +1,36 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<div class="container">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create Category</h4>
+
+                <form class="forms-sample" method="post">
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" placeholder="type here...">
+                        <span asp-validation-for="Name" class="text text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image upload</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary me-2"><i class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button>
+                    <button asp-controller="Categories" asp-action="Main"  class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
