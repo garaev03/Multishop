@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qaZAuUclgj9xav76NQfAam6KFRzLNU5be/GLc/rkOuCCroweg2+bs0xzzBEQ99pXLHJe6uCWAuKQJnkUJCfbYA==",
+  "dgSpecHash": "b4r5EvBcagWYtcuEAwQWZKvBSZ+4MYRXJ59/2YtZt2vORPc8nlh1IUG2ye7zpmtt8H9V8mY8XRS8c6sxgZs0bw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\samir\\Desktop\\ASPNET CORE\\MultiShop\\MultiShop.csproj",
+  "projectFilePath": "C:\\Users\\samir\\OneDrive\\Desktop\\codeAcadem\\Hometasks\\Multishop\\MultiShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\samir\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\samir\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
