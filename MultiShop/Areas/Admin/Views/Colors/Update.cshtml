@@ -1,0 +1,22 @@
+﻿@model ColorUpdateDto
+@{
+    ViewData["Title"] = "Update Color";
+}
+
+<div>
+    <div class="mb-4" style="font-size: 25px">
+        Update Color
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="colorPostDto.Value">Color Value</label>
+            <input asp-for="colorPostDto.Value" value="@Model.colorGetDto.Value" type="text" class="form-control" placeholder="Type here...">
+            <span asp-validation-for="colorPostDto.Value" class="text text-danger "></span>
+        </div>
+        <div>
+            <input hidden asp-for="colorGetDto.Id" />
+        </div>
+        <button type="submit" class="btn btn-success text-light">Submit</button>
+        <a asp-controller="Sizes" asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,48 @@
+﻿@model List<ColorGetDto>
+@{
+    ViewData["Title"] = "Colors";
+}
+<div class="row">
+    <!-- column -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Colors</h4>
+                    <a asp-action="Create" class="text-light btn btn-success">Add Color</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table user-table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Id</th>
+                                <th class="border-top-0">Value</th>
+                                <th class="border-top-0">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var Color in Model)
+                            {
+                                <tr style="vertical-align: middle;">
+                                    <td><span>@Color.Id</span></td>
+                                    <td><span>@Color.Value</span></td>
+                                    <td>
+                                        <div>
+                                            <a asp-action="Update" asp-route-id="@Color.Id">update </a>
+                                            <a asp-action="Delete" asp-route-id="@Color.Id">delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,19 @@
+﻿@model SizePostDto
+@{
+    ViewData["Title"] = "Create Size";
+}
+
+<div>
+    <div class="mb-4" style="font-size: 25px">
+        Create Size
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Value">Size Value</label>
+            <input asp-for="Value" type="text" class="form-control" placeholder="Type here...">
+            <span asp-validation-for="Value" class="text text-danger "></span>
+        </div>
+        <button type="submit" class="btn btn-success text-light">Submit</button>
+        <a asp-controller="Sizes" asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+    </form>
+</div>

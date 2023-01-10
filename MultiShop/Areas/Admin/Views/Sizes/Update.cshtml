@@ -1,0 +1,22 @@
+﻿@model SizeUpdateDto
+@{
+    ViewData["Title"] = "Update Size";
+}
+
+<div>
+    <div class="mb-4" style="font-size: 25px">  
+        Update Size
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="sizePostDto.Value">Size Value</label>
+            <input asp-for="sizePostDto.Value" value="@Model.sizeGetDto.Value" type="text" class="form-control" placeholder="Type here...">
+            <span asp-validation-for="sizePostDto.Value" class="text text-danger "></span>
+        </div>
+        <div>
+            <input hidden asp-for="@Model.sizeGetDto.Id" />
+        </div>
+        <button type="submit" class="btn btn-success text-light">Submit</button>
+        <a asp-controller="Sizes" asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+    </form>
+</div>
