@@ -10,6 +10,7 @@
         public string? Information { get; set; }
         public string MainImage { get; set; }
         public bool isDeleted { get; set; }
+        public int TotalCount { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public List<Image> Images { get; set; }

@@ -11,7 +11,7 @@ namespace MultiShop.Dtos.ProductDtos
         public string MainImage { get; set; }
         public string? Description { get; set; }
         public string? Information { get; set; }
-        public int Count { get; set; }
+        public int TotalCount { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public ProductGetDto()

@@ -47,25 +47,25 @@ namespace MultiShop.Areas.Admin.Controllers
                 return View(categoryPostDto);
             }
 
-            CategoryService categoryService = new CategoryService();
-            if (!categoryService.CheckImageExistence(categoryPostDto.formFile))
+            ImageService service = new ImageService();
+            if (!service.CheckImageExistence(categoryPostDto.formFile))
             {
                 ModelState.AddModelError("formFile", "Please, choose only images!");
                 return View(categoryPostDto);
             }
-            if (!categoryService.ImageValidation(categoryPostDto.formFile))
+            if (!service.ImageValidation(categoryPostDto.formFile))
             {
                 ModelState.AddModelError("formFile", "Please, choose only images!");
                 return View(categoryPostDto);
             }
-            if (!categoryService.CheckImageSize(categoryPostDto.formFile, 2))
+            if (!service.CheckImageSize(categoryPostDto.formFile, 2))
             {
                 ModelState.AddModelError("formFile", "Please, choose image under 2MB!");
                 return View(categoryPostDto);
             }
-
+            string FolderPath = "assets/img/category-images";
             string FileName = $"{Guid.NewGuid()}-{categoryPostDto.formFile.FileName}";
-            categoryService.CreateImage(_env.WebRootPath, FileName, categoryPostDto.formFile);
+            service.CreateImage(_env.WebRootPath, FileName, FolderPath,categoryPostDto.formFile);
 
             await _db.Categories.AddAsync(new Category { Name = categoryPostDto.Name, Image = FileName });
             await _db.SaveChangesAsync();
@@ -103,21 +103,22 @@ namespace MultiShop.Areas.Admin.Controllers
             Category? category = await _db.Categories.FindAsync(categoryUpdateDto.categoryGetDto.Id);
             if (category != null)
             {
-                CategoryService categoryService = new CategoryService();
-                if (categoryService.CheckImageExistence(post.formFile))
+                ImageService service = new ImageService();
+                if (service.CheckImageExistence(post.formFile))
                 {
-                    if (!categoryService.ImageValidation(post.formFile))
+                    if (!service.ImageValidation(post.formFile))
                     {
                         ModelState.AddModelError("formFile", "Please, choose only images!");
                         return View(post);
                     }
-                    if (!categoryService.CheckImageSize(post.formFile, 2))
+                    if (!service.CheckImageSize(post.formFile, 2))
                     {
                         ModelState.AddModelError("formFile", "Please, choose image under 2MB!");
                         return View(post);
                     }
+                    string FolderPath = "assets/img/category-images";
                     string FileName = $"{Guid.NewGuid()}-{post.formFile.FileName}";
-                    categoryService.CreateImage(_env.WebRootPath, FileName, post.formFile);
+                    service.CreateImage(_env.WebRootPath, FolderPath,FileName, post.formFile);
 
                     category.Image = FileName;
                 }

@@ -1,11 +1,19 @@
 let AddSizeBtn = document.querySelector(".AddSize")
-let sizeColor = document.querySelector(".size-color")
 let sizeColorMain = document.querySelector(".size-color-main")
+let sizeColor = document.querySelector(".size-color")
 
 AddSizeBtn.addEventListener("click", () => {
-    sizeColorMain.innerHTML += sizeColor.outerHTML
-    let selectSizes=document.querySelectorAll(".select-sizes")
-    let last = selectSizes[selectSizes.length- 1];
-    last.innerHTML+='<a class="btn btn-outline-danger text-center btn-sm mt-3 pt-2 ms-3" style="height:34px"><i class="fas fa-minus-circle"></i></a>'
-    console.log(last);
+    let newSizeColor = document.createElement("div")
+    let deleteBtn = document.createElement("a")
+    deleteBtn.setAttribute("class","deleteBtn btn btn-outline-danger text-center mt-1 p-0 ps-2 pe-2")
+    deleteBtn.innerHTML+='<i class="fas fa-minus-circle fa-xs"></i>'
+   
+    newSizeColor.setAttribute("class", "size-color")
+    newSizeColor.innerHTML = sizeColor.outerHTML
+    newSizeColor.children[0].children[0].children[0].appendChild(deleteBtn)
+    sizeColorMain.appendChild(newSizeColor)
+   
+    deleteBtn.addEventListener("click",()=>{
+        deleteBtn.parentElement.parentElement.parentElement.remove();
+    })
 })  

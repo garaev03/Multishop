@@ -7,6 +7,7 @@
     <div class="mb-4" style="font-size: 25px">
         Create Category
     </div>
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="Name">Product Name</label>
@@ -46,8 +47,8 @@
         <div class="size-color-main">
             <label asp-for="SizeIds">Select Sizes</label>
             <div class="size-color">
-                <div class="form-group d-flex justify-items-start mb-1">
-                    <div class="select-sizes d-flex">
+                <div class="form-group d-flex justify-content-between mb-1">
+                    <div class="select-sizes ">
                         <select class="form-control mt-3" style="width:20rem" name="SizeIds">
                             @foreach (var size in ViewBag.Sizes)
                             {
@@ -56,7 +57,7 @@
                         </select>
                     </div>
                     <div class="ms-5">
-                        <label>Select Colors</label>
+                    <label>Select Colors</label>
                         <div class="d-flex">
                             @foreach (var col in ViewBag.Colors)
                             {
@@ -65,13 +66,22 @@
                                     <input class="form-check-input" type="checkbox" name="ColorIds" value="@col.Id">
                                 </div>
                             }
+                            <input hidden name="ColorIds" value="-1" />
+                        </div>
+                    </div>
+                    <div class="ms-5">
+                        <label>Enter Count</label>
+                        <div class="d-flex">
+                            <div class="form-check me-4 p-0">
+                                <input class="form-input" type="number" name="Counts" value="0">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="AddSize btn btn-primary mb-3 ms-1 btn-sm"><i class="fas fa-plus-circle"></i></div>
+        <div class="AddSize btn btn-primary mb-3 btn-sm"><i class="fas fa-plus-circle"></i></div>
         <span asp-validation-for="SizeIds" class="text text-danger "></span>
 
         <div class="form-group">

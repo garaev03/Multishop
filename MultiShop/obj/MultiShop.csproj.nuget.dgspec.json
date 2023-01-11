@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\samir\\OneDrive\\Desktop\\MultiShop\\MultiShop\\MultiShop.csproj": {}
+    "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\MultiShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\samir\\OneDrive\\Desktop\\MultiShop\\MultiShop\\MultiShop.csproj": {
+    "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\MultiShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\samir\\OneDrive\\Desktop\\MultiShop\\MultiShop\\MultiShop.csproj",
+        "projectUniqueName": "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\MultiShop.csproj",
         "projectName": "MultiShop",
-        "projectPath": "C:\\Users\\samir\\OneDrive\\Desktop\\MultiShop\\MultiShop\\MultiShop.csproj",
+        "projectPath": "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\MultiShop.csproj",
         "packagesPath": "C:\\Users\\samir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\samir\\OneDrive\\Desktop\\MultiShop\\MultiShop\\obj\\",
+        "outputPath": "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -10,13 +10,15 @@ namespace MultiShop.Dtos.ProductDtos
         public string? Information { get; set; }
         public double Price { get; set; }
         public int CategoryId { get; set; }
-        public List<IFormFile>? formFiles { get; set; }
+        public List<IFormFile> formFiles { get; set; }
         public List<int> SizeIds { get; set; }
         public List<int> ColorIds { get; set; }
+        public List<int> Counts { get; set; }
         public ProductPostDto()
         {
             formFiles = new();
             SizeIds = new();
+            Counts=new();
         }
     }
 }
