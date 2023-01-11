@@ -8,7 +8,6 @@
         public string Title { get; set; }
         public string? Description { get; set; }
         public string? Information { get; set; }
-        public string MainImage { get; set; }
         public bool isDeleted { get; set; }
         public int TotalCount { get; set; }
         public int CategoryId { get; set; }

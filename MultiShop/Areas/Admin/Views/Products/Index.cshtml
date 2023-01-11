@@ -1,0 +1,52 @@
+﻿@model List<ProductGetDto>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="row">
+    <!-- column -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Products</h4>
+                    <a asp-action="Create" class="text-light btn btn-success">Add Product</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table user-table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">Id</th>
+                                <th class="border-top-0">Name</th>
+                                <th class="border-top-0">Image</th>
+                                <th class="border-top-0">Price</th>
+                                <th class="border-top-0">Total Count</th>
+
+                                <th class="border-top-0">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model)
+                            {
+                                <tr style="vertical-align: middle;">
+                                    <td><span>@product.Id</span></td>
+                                    <td><span>@product.Name</span></td>
+                                    <td><div><img width="100" height="100" src="~/assets/img/product-images/@product.MainImage" /></div></td>
+                                    <td><span>@product.Price</span></td>
+                                    <td><span>@product.TotalCount</span></td>
+                                    <td>
+                                        <div>
+                                            <a asp-action="Update" asp-route-id="@product.Id">update </a>
+                                            <a asp-action="Delete" asp-route-id="@product.Id">delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

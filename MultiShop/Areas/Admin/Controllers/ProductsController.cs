@@ -19,9 +19,13 @@ namespace MultiShop.Areas.Admin.Controllers
             _env = env;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            IQueryable<Product> dbProducts = _db.Products
+                .Include(i=>i.Images)
+                .Where(c => !c.isDeleted);
+            List<ProductGetDto> getProducts = await dbProducts.Select(c => new ProductGetDto { Name = c.Name, Id = c.Id, Price=c.Price, TotalCount=c.TotalCount, MainImage=c.Images.FirstOrDefault(i=>i.isMain).Path}).ToListAsync();
+            return View(getProducts);
         }
         public async Task<IActionResult> Create()
         {
@@ -37,122 +41,93 @@ namespace MultiShop.Areas.Admin.Controllers
             ViewBag.Sizes = await _db.Sizes.Where(c => !c.isDeleted).ToListAsync();
             ViewBag.Colors = await _db.Colors.Where(c => !c.isDeleted).ToListAsync();
 
-            //if (!ModelState.IsValid)
-            //    return View(productPostDto);
-            if (productPostDto.formFiles.Count == 0)
-            {
-                ModelState.AddModelError("formFiles", "Enter at least 1 image!");
+            if (!ModelState.IsValid)
                 return View(productPostDto);
-            }
-
-            List<List<int>> colors = new();
-            List<int> colorList = new();
-            HashSet<int> colorSet = new();
-            foreach (var id in productPostDto.ColorIds)
+            try
             {
-                if (id == -1)
-                {
-                    colors.Add(colorList);
-                    colorList = new();
-                    continue;
-                }
-                colorList.Add(id);
-                if(!colorSet.Contains(id))
-                {
-                    colorSet.Add(id);
-                }
-            }
-            if(colors.Count!= productPostDto.SizeIds.Count)
-            {
-                ModelState.AddModelError("", "Size color cannot be empty!");
-                return View(productPostDto);
-            }
+                List<int> UniqueColors = productPostDto.ColorIds.Distinct().ToList();
+                List<int> UniqueSizes = productPostDto.SizeIds.Distinct().ToList();
+                UniqueColors.Remove(-1);
 
-            ImageService service = new();
-            List<Image> images = new List<Image>();
-            string error = "";
-            productPostDto.formFiles.ForEach(formfile =>
-            {
-                if (!service.CheckImageExistence(formfile))
-                {
-                    error = "Enter at least 1 image!";
-                    ModelState.AddModelError("formFiles", error);
-                };
-                if (!service.ImageValidation(formfile))
-                {
-                    error = "Enter only images!";
-                    ModelState.AddModelError("formFiles", error);
-                }
-                if (!service.CheckImageSize(formfile, 2))
-                {
-                    error = "Enter images under 2MB!!";
-                    ModelState.AddModelError("formFiles", error);
-                };
-                string FolderPath = "assets/img/product-images";
-                string FileName = $"{productPostDto.Name}-{Guid.NewGuid()}-{formfile.FileName}";
-                service.CreateImage(_env.WebRootPath, FolderPath, FileName, formfile);
+                ProductService service = new();
 
-                Image image = new()
-                {
-                    Path= FileName,
-                    isDeleted= false,
-                    isMain= false,
-                };
-                if (productPostDto.formFiles.IndexOf(formfile)==0)
-                    image.isMain=true;
+                List<List<int>> colors = service.SplitColors(productPostDto.ColorIds);
+                service.CheckColors(colors, productPostDto.SizeIds.Count);
+                List<Image> images = service.CreateImage(productPostDto.formFiles, productPostDto.Name, _env);
 
-                images.Add(image);
-            });
-
-
-            Category? category = _db.Categories.Find(productPostDto.CategoryId);
-            if (category == null)
-                return NotFound();
-
-            Product product = new()
-            {
-                Name = productPostDto.Name,
-                Information = productPostDto.Information,
-                Price = productPostDto.Price,
-                Title = productPostDto.Title,
-                Description = productPostDto.Description,
-                MainImage = "loco",
-                isDeleted = false,
-                Images= images,
-                Category=category,
-            };
-            _db.Products.Add(product);
-            _db.SaveChanges();
-            //_db.Products.Local[0]
-            ProductSize PS = new();
-            foreach (var sizeid in productPostDto.SizeIds)
-            {
-                Size? size= _db.Sizes.Find(sizeid);
-                if (size == null)
+                Category? category = _db.Categories.Find(productPostDto.CategoryId);
+                if (category == null)
                     return NotFound();
-                PS.Product = product;
-                PS.Size = size;
-            }
 
-           
-            ProductColor PC = new();
-            foreach (var colorid in productPostDto.ColorIds)
-            {
-                if (colorid != -1)
+                int totalCount = 0;
+                foreach (int count in productPostDto.Counts)
                 {
-                    Color? color = _db.Colors.Find(colorid);
+                    totalCount += count;
+                }
+
+                Product product = new()
+                {
+                    Name = productPostDto.Name,
+                    Information = productPostDto.Information,
+                    Price = productPostDto.Price,
+                    Title = productPostDto.Title,
+                    Description = productPostDto.Description,
+                    isDeleted = false,
+                    TotalCount= totalCount,
+                    Images = images,
+                    Category = category,
+                };
+                _db.Products.Add(product);
+                _db.SaveChanges();
+
+                foreach (var sizeId in UniqueSizes)
+                {
+                    Size? size = _db.Sizes.Find(sizeId);
+                    if (size == null)
+                        return NotFound();
+                    ProductSize PS = new();
+                    PS.Product = product;
+                    PS.Size = size;
+                    _db.ProductSizes.Add(PS);
+                }
+
+                foreach (var colorId in UniqueColors)
+                {
+                    Color? color = _db.Colors.Find(colorId);
                     if (color == null)
                         return NotFound();
+                    ProductColor PC = new();
                     PC.Product = product;
                     PC.Color = color;
                     _db.ProductColors.Add(PC);
                 }
+
+                for (int i = 0; i < productPostDto.SizeIds.Count; i++)
+                {
+                    Size? size = _db.Sizes.Find(productPostDto.SizeIds[i]);
+                    if (size == null)
+                        return NotFound();
+                    for (int j = 0; j < colors[i].Count; j++)
+                    {
+                        Color? color = _db.Colors.Find(colors[i][j]);
+                        if (color == null)
+                            return NotFound();
+                        ProductSizeColor PSC = new();
+                        PSC.product = product;
+                        PSC.size = size;
+                        PSC.color = color;
+                        PSC.Count = productPostDto.Counts[i];
+                        _db.ProductSizeColors.Add(PSC);
+                    }
+                }
+                _db.SaveChanges();
             }
-
-
-            _db.ProductSizes.Add(PS);
-
-            return View();
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return View();
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
