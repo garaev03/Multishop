@@ -3,7 +3,7 @@ using MultiShop.Services.Interfaces;
 
 namespace MultiShop.Services.Implementations
 {
-    public class ImageService : ICheckImage, ICreateFile
+    public class ImageService : IImageService
     {
         public bool CheckImageExistence(IFormFile? formFile)
         {

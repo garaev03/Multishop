@@ -114,9 +114,6 @@ namespace MultiShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -134,52 +131,6 @@ namespace MultiShop.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("MultiShop.Models.ProductColor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ColorId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductColors");
-                });
-
-            modelBuilder.Entity("MultiShop.Models.ProductSize", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SizeId");
-
-                    b.ToTable("ProductSizes");
-                });
-
             modelBuilder.Entity("MultiShop.Models.ProductSizeColor", b =>
                 {
                     b.Property<int>("Id")
@@ -193,6 +144,9 @@ namespace MultiShop.Migrations
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -253,60 +207,22 @@ namespace MultiShop.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("MultiShop.Models.ProductColor", b =>
-                {
-                    b.HasOne("MultiShop.Models.Color", "Color")
-                        .WithMany("ProductColors")
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MultiShop.Models.Product", "Product")
-                        .WithMany("ProductColors")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Color");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MultiShop.Models.ProductSize", b =>
-                {
-                    b.HasOne("MultiShop.Models.Product", "Product")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MultiShop.Models.Size", "Size")
-                        .WithMany("ProductSizes")
-                        .HasForeignKey("SizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Size");
-                });
-
             modelBuilder.Entity("MultiShop.Models.ProductSizeColor", b =>
                 {
                     b.HasOne("MultiShop.Models.Color", "color")
-                        .WithMany()
+                        .WithMany("ProductSizeColors")
                         .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MultiShop.Models.Product", "product")
-                        .WithMany()
+                        .WithMany("ProductSizeColors")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MultiShop.Models.Size", "size")
-                        .WithMany()
+                        .WithMany("ProductSizeColors")
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -325,21 +241,19 @@ namespace MultiShop.Migrations
 
             modelBuilder.Entity("MultiShop.Models.Color", b =>
                 {
-                    b.Navigation("ProductColors");
+                    b.Navigation("ProductSizeColors");
                 });
 
             modelBuilder.Entity("MultiShop.Models.Product", b =>
                 {
                     b.Navigation("Images");
 
-                    b.Navigation("ProductColors");
-
-                    b.Navigation("ProductSizes");
+                    b.Navigation("ProductSizeColors");
                 });
 
             modelBuilder.Entity("MultiShop.Models.Size", b =>
                 {
-                    b.Navigation("ProductSizes");
+                    b.Navigation("ProductSizeColors");
                 });
 #pragma warning restore 612, 618
         }

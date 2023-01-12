@@ -10,6 +10,7 @@
         public Size size { get; set; }
         public Color color { get; set; }
         public int Count { get; set; }
+        public double Price { get; set; }
         public ProductSizeColor()
         {
             product = new();

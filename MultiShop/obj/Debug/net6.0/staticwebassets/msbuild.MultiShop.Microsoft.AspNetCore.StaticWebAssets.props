@@ -9664,6 +9664,70 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-9.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\Adidas Tiro21 Polo-0da8a69a-03d0-47ae-ba30-b0f62293c05a-ezgif-3-71cdbcdcc3.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MultiShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MultiShop</BasePath>
+      <RelativePath>assets/img/product-images/Adidas Tiro21 Polo-0da8a69a-03d0-47ae-ba30-b0f62293c05a-ezgif-3-71cdbcdcc3.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\Adidas Tiro21 Polo-0da8a69a-03d0-47ae-ba30-b0f62293c05a-ezgif-3-71cdbcdcc3.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\Adidas Tiro21 Polo-1ff71770-fcee-405a-8bd2-3de5382c551b-ezgif-3-6821901fed.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MultiShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MultiShop</BasePath>
+      <RelativePath>assets/img/product-images/Adidas Tiro21 Polo-1ff71770-fcee-405a-8bd2-3de5382c551b-ezgif-3-6821901fed.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\Adidas Tiro21 Polo-1ff71770-fcee-405a-8bd2-3de5382c551b-ezgif-3-6821901fed.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\Adidas Tiro21 Polo-7c1f63e5-19f7-4819-bdde-e5ff6f75b265-ezgif-3-581e1595c1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MultiShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MultiShop</BasePath>
+      <RelativePath>assets/img/product-images/Adidas Tiro21 Polo-7c1f63e5-19f7-4819-bdde-e5ff6f75b265-ezgif-3-581e1595c1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\Adidas Tiro21 Polo-7c1f63e5-19f7-4819-bdde-e5ff6f75b265-ezgif-3-581e1595c1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\LASTTEST-336f2b03-710b-43e6-9bce-cc3b3bb2ec7c-cat-1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MultiShop</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MultiShop</BasePath>
+      <RelativePath>assets/img/product-images/LASTTEST-336f2b03-710b-43e6-9bce-cc3b3bb2ec7c-cat-1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\LASTTEST-336f2b03-710b-43e6-9bce-cc3b3bb2ec7c-cat-1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\product-images\TEST-01df74bf-f875-468a-a5c8-03ec74664a2c-cat-1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>MultiShop</SourceId>

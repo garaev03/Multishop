@@ -23,8 +23,9 @@ namespace MultiShop.Areas.Admin.Controllers
         {
             IQueryable<Product> dbProducts = _db.Products
                 .Include(i=>i.Images)
+                .Include(psc=>psc.ProductSizeColors)
                 .Where(c => !c.isDeleted);
-            List<ProductGetDto> getProducts = await dbProducts.Select(c => new ProductGetDto { Name = c.Name, Id = c.Id, Price=c.Price, TotalCount=c.TotalCount, MainImage=c.Images.FirstOrDefault(i=>i.isMain).Path}).ToListAsync();
+            List<ProductGetDto> getProducts = await dbProducts.Select(c => new ProductGetDto { Name = c.Name, Id = c.Id, TotalCount=c.TotalCount, MainImage=c.Images.FirstOrDefault(i=>i.isMain).Path}).ToListAsync();
             return View(getProducts);
         }
         public async Task<IActionResult> Create()
@@ -45,31 +46,23 @@ namespace MultiShop.Areas.Admin.Controllers
                 return View(productPostDto);
             try
             {
-                List<int> UniqueColors = productPostDto.ColorIds.Distinct().ToList();
-                List<int> UniqueSizes = productPostDto.SizeIds.Distinct().ToList();
-                UniqueColors.Remove(-1);
-
                 ProductService service = new();
 
                 List<List<int>> colors = service.SplitColors(productPostDto.ColorIds);
                 service.CheckColors(colors, productPostDto.SizeIds.Count);
+                service.CheckPrices(productPostDto.Prices);
+                service.CheckCounts(productPostDto.Counts);
                 List<Image> images = service.CreateImage(productPostDto.formFiles, productPostDto.Name, _env);
 
-                Category? category = _db.Categories.Find(productPostDto.CategoryId);
+                Category? category = await _db.Categories.FindAsync(productPostDto.CategoryId);
                 if (category == null)
                     return NotFound();
-
-                int totalCount = 0;
-                foreach (int count in productPostDto.Counts)
-                {
-                    totalCount += count;
-                }
+                int totalCount = service.GetTotalCount(productPostDto.Counts);
 
                 Product product = new()
                 {
                     Name = productPostDto.Name,
                     Information = productPostDto.Information,
-                    Price = productPostDto.Price,
                     Title = productPostDto.Title,
                     Description = productPostDto.Description,
                     isDeleted = false,
@@ -77,39 +70,17 @@ namespace MultiShop.Areas.Admin.Controllers
                     Images = images,
                     Category = category,
                 };
-                _db.Products.Add(product);
-                _db.SaveChanges();
-
-                foreach (var sizeId in UniqueSizes)
-                {
-                    Size? size = _db.Sizes.Find(sizeId);
-                    if (size == null)
-                        return NotFound();
-                    ProductSize PS = new();
-                    PS.Product = product;
-                    PS.Size = size;
-                    _db.ProductSizes.Add(PS);
-                }
-
-                foreach (var colorId in UniqueColors)
-                {
-                    Color? color = _db.Colors.Find(colorId);
-                    if (color == null)
-                        return NotFound();
-                    ProductColor PC = new();
-                    PC.Product = product;
-                    PC.Color = color;
-                    _db.ProductColors.Add(PC);
-                }
+                await _db.Products.AddAsync(product);
+                await _db.SaveChangesAsync();
 
                 for (int i = 0; i < productPostDto.SizeIds.Count; i++)
                 {
-                    Size? size = _db.Sizes.Find(productPostDto.SizeIds[i]);
+                    Size? size = await _db.Sizes.FindAsync(productPostDto.SizeIds[i]);
                     if (size == null)
                         return NotFound();
                     for (int j = 0; j < colors[i].Count; j++)
                     {
-                        Color? color = _db.Colors.Find(colors[i][j]);
+                        Color? color = await _db.Colors.FindAsync(colors[i][j]);
                         if (color == null)
                             return NotFound();
                         ProductSizeColor PSC = new();
@@ -117,16 +88,26 @@ namespace MultiShop.Areas.Admin.Controllers
                         PSC.size = size;
                         PSC.color = color;
                         PSC.Count = productPostDto.Counts[i];
-                        _db.ProductSizeColors.Add(PSC);
+                        PSC.Price = productPostDto.Prices[i];
+                        await _db.ProductSizeColors.AddAsync(PSC);
                     }
                 }
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
                 return View();
             }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Product? Product = await _db.Products.FindAsync(id);
+            if(Product == null) return NotFound();
+            Product.isDeleted = true;
+            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

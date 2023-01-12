@@ -30,11 +30,6 @@
             <span asp-validation-for="Information" class="text text-danger "></span>
         </div>
         <div class="form-group">
-            <label asp-for="Price"></label>
-            <input asp-for="Price" type="number" class="form-control" placeholder="Type here...">
-            <span asp-validation-for="Price" class="text text-danger "></span>
-        </div>
-        <div class="form-group">
             <label asp-for="CategoryId">Select Category</label>
             <select class="form-control" asp-for="CategoryId">
                 @foreach (var cat in ViewBag.Categories)
@@ -74,6 +69,14 @@
                         <div class="d-flex">
                             <div class="form-check me-4 p-0">
                                 <input class="form-input" type="number" name="Counts" value="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-5">      
+                        <label>Enter Price</label>
+                        <div class="d-flex">
+                            <div class="form-check me-4 p-0">
+                                <input class="form-input" type="number" name="Prices" value="0">
                             </div>
                         </div>
                     </div>

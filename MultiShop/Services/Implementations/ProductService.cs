@@ -1,4 +1,5 @@
-﻿using MultiShop.Models;
+﻿using MultiShop.Dtos.ProductDtos;
+using MultiShop.Models;
 using MultiShop.Services.Interfaces;
 
 namespace MultiShop.Services.Implementations
@@ -67,6 +68,34 @@ namespace MultiShop.Services.Implementations
                 colorList.Add(id);
             }
             return colors;
+        }
+
+        public void CheckCounts(List<int> counts)
+        {
+            foreach (int count in counts)
+            {
+                if(count<0)
+                    throw new Exception("Count cannot be under 0!");
+            }
+        }
+
+        public void CheckPrices(List<int> prices)
+        {
+            foreach (int price in prices)
+            {
+                if (price < 0)
+                    throw new Exception("Price cannot be under 0!");
+            }
+        }
+
+        public int GetTotalCount(List<int> counts)
+        {
+            int totalCount = 0;
+            foreach (int count in counts)
+            {
+                totalCount += count;
+            }
+            return totalCount;
         }
     }
 }
