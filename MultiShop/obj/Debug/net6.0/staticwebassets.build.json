@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4ngV2NXsp641rp7S1HQ1qJuJtnSyXVc2NrIOvOL/Zcw=",
+  "Hash": "TSt+pLwC1sKzSRJEyDegFA3Ts6/6ruWnekjkmTJgO9M=",
   "Source": "MultiShop",
   "BasePath": "_content/MultiShop",
   "Mode": "Default",
@@ -10011,6 +10011,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\category-images\\2951c04e-fc5d-4700-af13-a4a843e73dbb-cat-2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\wwwroot\\assets\\img\\category-images\\400390b8-bd95-476a-a332-b8719205c20d-In4x5M.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "assets/img/category-images/400390b8-bd95-476a-a332-b8719205c20d-In4x5M.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\category-images\\400390b8-bd95-476a-a332-b8719205c20d-In4x5M.jpg"
     },
     {
       "Identity": "C:\\Users\\samir\\OneDrive\\Desktop\\Multishop\\MultiShop\\wwwroot\\assets\\img\\category-images\\6496c53c-3745-417b-9f4b-ad5414acbf2d-carousel-3.jpg",

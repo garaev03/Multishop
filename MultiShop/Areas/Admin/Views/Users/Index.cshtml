@@ -1,0 +1,70 @@
+﻿@model List<UsersGetDto>
+@{
+    ViewData["Title"] = "Users";
+    int num = 0;
+}
+
+<div class="row">
+    <!-- column -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Users</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table user-table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">First Name</th>
+                                <th class="border-top-0">Last Name</th>
+                                <th class="border-top-0">Email</th>
+                                <th class="border-top-0">Username</th>
+                                <th class="border-top-0">Phone number</th>
+                                <th class="border-top-0">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UsersGetDto getDto in Model)
+                            {
+                                num++;
+                                <tr style="vertical-align: middle;">
+                                    <td><span>@num</span></td>
+                                    <td><span>@getDto.FirstName</span></td>
+                                    @if (getDto.LastName == null)
+                                    {
+                                        <td><span>none</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@getDto.LastName</span></td>
+                                    }
+                                    <td><span>@getDto.Email</span></td>
+                                    <td><span>@getDto.UserName</span></td>
+                                    @if (getDto.PhoneNumber == null)
+                                    {
+                                        <td><span>none</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@getDto.PhoneNumber</span></td>
+                                    }
+                                    <td>
+                                      @*<div>
+                                            <a asp-action="Update" asp-route-id="@getDto.Id">update </a>
+                                            <a asp-action="Delete" asp-route-id="@getDto.Id">delete</a>
+                                        </div>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

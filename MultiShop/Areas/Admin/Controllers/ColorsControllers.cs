@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MultiShop.DAL;
 using MultiShop.Dtos.ColorDtos;
@@ -7,6 +8,7 @@ using MultiShop.Models;
 namespace MultiShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ColorsController : Controller
     {
         private readonly MultiShopDBContext _db;

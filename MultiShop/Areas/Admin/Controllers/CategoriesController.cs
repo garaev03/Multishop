@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using MultiShop.DAL;
 using MultiShop.Dtos.CategoryDtos;
 using MultiShop.Models;
 using MultiShop.Services.Implementations;
-using MultiShop.Services.Interfaces;
 
 namespace MultiShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private readonly MultiShopDBContext _db;
@@ -63,9 +62,9 @@ namespace MultiShop.Areas.Admin.Controllers
                 ModelState.AddModelError("formFile", "Please, choose image under 2MB!");
                 return View(categoryPostDto);
             }
-            string FolderPath = "assets/img/category-images";
+            string FolderPath = "assets/img/category-images/";
             string FileName = $"{Guid.NewGuid()}-{categoryPostDto.formFile.FileName}";
-            service.CreateImage(_env.WebRootPath, FileName, FolderPath,categoryPostDto.formFile);
+            service.CreateImage(_env.WebRootPath, FolderPath, FileName, categoryPostDto.formFile);
 
             await _db.Categories.AddAsync(new Category { Name = categoryPostDto.Name, Image = FileName });
             await _db.SaveChangesAsync();

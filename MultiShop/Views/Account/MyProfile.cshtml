@@ -1,0 +1,63 @@
+﻿@model ProfileUpdateDto
+@{
+    ViewData["Title"] = "MyProfile";
+}
+
+<div class="container">
+    <div class="shadow-lg rounded p-4 p-sm-5 bg-white form mb-4">
+        <h3 class="fw-bold mb-3 text-center">Profile Details</h3>
+        @*<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>*@
+        <form class="mt-4" method="post">
+            <div class="form-group">
+                <label class="form-label" asp-for="@Model.GetDto.FirstName">First name</label>
+                <input asp-for="@Model.PostDto.FirstName" value="@Model.GetDto.FirstName" type="text" class="form-control" placeholder="Enter your first name" disabled>
+                <span asp-validation-for="@Model.PostDto.FirstName" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="@Model.GetDto.LastName">First name</label>
+                <input asp-for="@Model.PostDto.LastName" value="@Model.GetDto.LastName" type="text" class="form-control" placeholder="Enter your last name" disabled>
+                <span asp-validation-for="@Model.PostDto.LastName" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="@Model.GetDto.UserName">Username</label>
+                <input asp-for="@Model.PostDto.UserName" value="@Model.GetDto.UserName" type="text" class="form-control" placeholder="Enter username" disabled>
+                <span asp-validation-for="@Model.PostDto.UserName" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.GetDto.Email" class="form-label" for="register-email">Email address</label>
+                <input asp-for="@Model.PostDto.Email" value="@Model.GetDto.Email" type="email" class="form-control" placeholder="name@email.com" disabled>
+                <span asp-validation-for="@Model.PostDto.Email" class="text text-danger"></span>
+            </div>
+            @if (Model.GetDto.PhoneNumber == null)
+            {
+                <div class="form-group">
+                    <label class="form-label" asp-for="@Model.GetDto.PhoneNumber">Phone number</label>
+                    <input asp-for="@Model.PostDto.PhoneNumber" type="number" class="form-control" value="none" disabled>
+                    <span asp-validation-for="@Model.PostDto.PhoneNumber" class="text text-danger"></span>
+                </div>
+            }
+            else
+            {
+               <div class="form-group">
+                    <label class="form-label" asp-for="@Model.GetDto.PhoneNumber">Phone number</label>
+                    <input asp-for="@Model.PostDto.PhoneNumber" value="@Model.GetDto.PhoneNumber" type="number" class="form-control"  disabled>
+                    <span asp-validation-for="@Model.PostDto.PhoneNumber" class="text text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <label class="form-label" asp-for="@Model.GetDto.Password">Password</label>
+                <input asp-for="@Model.PostDto.Password" value="@Model.GetDto.Password" type="password" class="form-control" placeholder="Enter your password" disabled>
+                <span asp-validation-for="@Model.PostDto.Password" class="text text-danger"></span>
+            </div>
+            @*    <div class="form-group">
+            <label class="form-label" asp-for="ConfirmPassword">Confirm Password</label>
+            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Rewrite your password">
+            <span asp-validation-for="ConfirmPassword" class="text text-danger"></span>
+            </div>*@
+            <button type="submit" class="btn btn-warning d-block w-100 my-4" disabled>Update</button>
+            <a asp-action="MyProfile" class="btn btn-warning d-block w-100 my-4" disabled>Revert</a>
+        </form>
+    </div>
+</div>
+
+

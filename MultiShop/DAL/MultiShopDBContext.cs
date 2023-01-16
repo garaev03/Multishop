@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MultiShop.Models;
 
 namespace MultiShop.DAL
 {
-    public class MultiShopDBContext:DbContext
+    public class MultiShopDBContext:IdentityDbContext<AppUser>
     {
         public MultiShopDBContext(DbContextOptions<MultiShopDBContext> options):base(options){}
 

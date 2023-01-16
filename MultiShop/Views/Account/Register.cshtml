@@ -1,0 +1,48 @@
+﻿@model RegisterDto
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <div class="shadow-lg rounded p-4 p-sm-5 bg-white form mb-4">
+        <h3 class="fw-bold mb-3 text-center">Register</h3>
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <!-- Register Form-->
+        <form class="mt-4" method="post">
+            <div class="form-group">
+                <label class="form-label" asp-for="FirstName">First name</label>
+                <input asp-for="FirstName" type="text" class="form-control" placeholder="Enter your first name">
+                <span asp-validation-for="FirstName" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="LastName">First name</label>
+                <input asp-for="LastName" type="text" class="form-control" placeholder="Enter your last name">
+                <span asp-validation-for="LastName" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="UserName">Username</label>
+                <input asp-for="UserName" type="text" class="form-control" placeholder="Enter username">
+                <span asp-validation-for="UserName" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="form-label" for="register-email">Email address</label>
+                <input asp-for="Email" type="email" class="form-control" id="register-email" placeholder="name@email.com">
+                <span asp-validation-for="Email" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password">
+                <span asp-validation-for="Password" class="text text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="ConfirmPassword">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Rewrite your password">
+                <span asp-validation-for="ConfirmPassword" class="text text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-warning d-block w-100 my-4">Sign Up</button>
+        </form>
+        <!-- / Register Form-->
+        <p class="d-block text-center text-muted small">Already registered? <a class="text-muted text-decoration-underline" asp-action="SignIn">Login here.</a></p>
+    </div>
+</div>
+

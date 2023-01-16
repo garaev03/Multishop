@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MultiShop.DAL;
-using MultiShop.Dtos.CategoryDtos;
 using MultiShop.Dtos.ProductDtos;
 using MultiShop.Models;
 using MultiShop.Services.Implementations;
+using System.Data;
 
 namespace MultiShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly MultiShopDBContext _db;
